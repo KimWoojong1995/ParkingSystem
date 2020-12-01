@@ -1,0 +1,169 @@
+.body__container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    /* background: #f5f5f5; */
+}
+a {
+    text-decoration: none;
+}
+
+/* COMMON */
+.inner {
+    max-width: 980px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+}
+.home a {
+    color: #3c4146;
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    margin-left: 10px;
+}
+
+/* FLOAT CLEARFIX */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.float--left {
+    float: left;
+}
+.float--right {
+    float: right;
+}
+
+/* BTN */
+.btn {
+    height: 34px;
+    background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #333;
+}
+.btn:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(211, 210, 210, 0.7);
+}
+.btn.btn--primary {
+    border: 1px solid #65b836;
+    color: #fff;
+    background: #55a532 linear-gradient(#91dd70, #55ae2e);
+}
+
+/* HEADER */
+header {
+    border-bottom: 1px solid rgba(0, 0, 0, .75);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .75);
+    background: #fff;
+}
+header .inner {
+    height: 78px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+header .menu-group, header .home{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+header .main-menu {
+    display: flex;
+}
+header .main-menu li a {
+    display: block;
+    padding: 40px;
+    color: #3c4146;
+}
+header .main-menu li a:hover {
+    color: #4078c0;
+}
+header .btn-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+header .btn-group div {
+    display: flex;
+}
+header .btn-group .login {
+    margin-right: 5px;
+}
+#toggle-btn {
+    display: none;
+    background: url("../img/toggle-btn.svg");
+    width: 18px;
+    height: 24px;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    cursor: pointer;
+    text-indent: -9999px;
+}
+
+/* SECTION */
+section {
+    background: url(bg-parking.png) no-repeat;
+    background-position: bottom left;
+    background-size: cover;
+}
+section .inner {
+    /* padding: 320px 0 350px 0; */
+    padding: 340px 0;
+}
+section .summary {
+    text-align: center;
+}
+.summary h2 {
+    color: #fff;
+    font-size: 54px;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25),
+                 0 1px 25px rgba(0, 0, 0, 0.75);
+}
+.summary p {
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25),
+                 0 1px 25px rgba(0, 0, 0, 0.75);
+}
+
+/* Footer */
+footer .inner {
+    padding: 50px 0;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-evenly;
+}
+footer .site-links {
+    display: flex;
+}
+footer .site-links li, .make {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #767676;
+}
+footer .site-links li a {
+    color: #4078c0;
+}
+footer .site-links li a:hover {
+    text-decoration: underline;
+}
