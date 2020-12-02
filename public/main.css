@@ -125,26 +125,80 @@ section {
     background: url(bg-parking.png) no-repeat;
     background-position: bottom left;
     background-size: cover;
+    height: 750px;
 }
+/* index.html */
 section .inner {
-    /* padding: 320px 0 350px 0; */
-    padding: 340px 0;
+    padding: 280px 0;
 }
 section .summary {
     text-align: center;
 }
-.summary h2 {
+section .summary h2 {
     color: #fff;
     font-size: 54px;
-    margin-bottom: 30px;
+    line-height: 1.25;
+    margin-bottom: 18px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .25),
                  0 1px 25px rgba(0, 0, 0, 0.75);
 }
-.summary p {
+section .summary p {
     color: #fff;
+    font-size: 26px;
+    line-height: 1.5;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .25),
                  0 1px 25px rgba(0, 0, 0, 0.75);
 }
+/* COMMON */
+section .join,
+section .login,
+section .park {
+    width: 340px;
+    margin: 0 auto;
+}
+/* join.html */
+section .join {
+    padding: 150px;
+}
+#join-form, #login-form, #park-form {
+    color: #fff;
+    padding-top: 30px;
+    font-size: 20px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25),
+                 0 1px 25px rgba(0, 0, 0, 0.75);
+}
+#join-form li, #login-form li, #park-form li {
+    margin-bottom: 17px;
+}
+#join-form li:last-child, #login-form:last-child {
+    margin-bottom: 0;
+}
+#join-form input, #login-form input, #park-form input {
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border: 0;
+}
+#join-form button, #login-form button, #park-form button {
+    width: 100%;
+    height: 48px;
+    font-size: 20px;
+    justify-content: center;
+}
+/* login.html */
+section .login {
+    padding: 180px;
+}
+/* parkIn.html */
+section .park {
+    padding: 210px;
+}
+#park-form p {
+    text-align: center;
+}
+
 
 /* Footer */
 footer .inner {
@@ -156,7 +210,7 @@ footer .inner {
 footer .site-links {
     display: flex;
 }
-footer .site-links li, .make {
+footer .site-links li, .made {
     font-size: 12px;
     margin-right: 10px;
     color: #767676;

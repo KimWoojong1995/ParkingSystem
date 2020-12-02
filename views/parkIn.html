@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="park">
+        <form id="park-form" action="/park/in" method="POST">
+            <ul>
+                <li>
+                    <label for="carNumber">차량번호</label>
+                    <input id="carNumber" type="text" name="carNumber" required pattern="(\d{2,3})([가-힣])(\d{4})">
+                </li>
+                <li>
+                    <button type="submit" class="btn btn--primary">주차하기</button>
+                </li>
+                <li>
+                    <a href="/auth/join"><button class="btn" type="button">회원가입</button></a>
+                </li>
+            </ul>
+            <div>
+                <p>
+                    회원가입 후 20% 할인 받으세요!
+                </p>
+            </div>
+        </form>
+    </div>
+{% endblock %}

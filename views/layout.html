@@ -23,16 +23,16 @@
             </div>
             <div class="menu-group">
                 <ul class="main-menu toggle">
-                    <li><a href="parkin">주차하기</a></li>
-                    <li><a href="parkout">출차하기</a></li>
-                    <li><a href="ticket">정기권</a></li>
-                    <li><a href="Plan">요금안내</a></li>
+                    <li><a href="/park/in">주차하기</a></li>
+                    <li><a href="/park/out">출차하기</a></li>
+                    <li><a href="/ticket">정기권</a></li>
+                    <li><a href="/Plan">요금안내</a></li>
                 </ul>
             </div>
             <div class="btn-group toggle">
                 <div>
-                    <a href="login" class="btn login">로그인</a>
-                    <a href="join" class="btn btn--primary join">회원가입</a>
+                    <a href="/auth/login" class="btn login">로그인</a>
+                    <a href="/auth/join" class="btn btn--primary join">회원가입</a>
                 </div>
             </div>
             <div id="toggle-btn">Header</div>
@@ -41,16 +41,8 @@
 
     <!-- VISUAL -->
     <section>
-        <div class="inner">
-            <div class="summary">
-                <h2>
-                    WJ파크를 이용해주셔서 감사합니다.
-                </h2>
-                <p>
-                    회원가입 후 20% 할인을 받으세요.
-                </p>
-            </div>
-        </div>
+            {% block content %}
+            {% endblock %}
     </section>
 
     <footer>
@@ -60,8 +52,8 @@
                 <li><a href="https://github.com/KimWoojong1995/Resume">Resume</a></li>
                 <li><a href="https://kimwoojong1995.github.io/PortFolio/">PortFolio</a></li>
             </ul>
-            <div class="make">
-                © Made by Woojong!
+            <div class="made">
+                © Made by Woojong
             </div>
             <ul class="site-links float--left">
                 <li><a href="https://woojong-develop.tistory.com">Blog</a></li>
@@ -72,5 +64,7 @@
     </footer>
 
 </div>
+{% block script %}
+{% endblock %}
 </body>
 </html>

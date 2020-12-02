@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="login">
+        <form id="login-form" action="/auth/login" method="POST">
+            <ul>
+                <li>
+                    <label for="name">이름</label>
+                    <input id="name" type="text" name="name" required>
+                </li>
+                <li>
+                    <label for="password">비밀번호</label>
+                    <input id="password" type="password" name="password" required>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn--primary">로그인</button>
+                </li>
+                <li>
+                    <a href="/auth/join"><button class="btn" type="button">회원가입</button></a>
+                </li>
+            </ul>
+        </form>
+    </div>
+{% endblock %}
