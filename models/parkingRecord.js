@@ -7,17 +7,23 @@ module.exports = class ParkingRecord extends Sequelize.Model {
         type: Sequelize.STRING(15),
         allowNull: false,
       },
-      ticket: {
-        type: Sequelize.STRING(10),
-        allowNull: false,
-        defaultValue: 'local',
-      },
-      payment: {
+      paid: {
           type: Sequelize.BOOLEAN,
+          allowNull: true,
+          defaultValue: false,
+      },
+      inTime: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
+      },
+      outTime: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
     }, {
       sequelize,
-      timestamps: true,
+      timestamps: false,
       underscored: false,
       modelName: 'ParkingRecord',
       tableName: 'parkingRecords',
@@ -28,6 +34,6 @@ module.exports = class ParkingRecord extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.ParkingRecord.belongsTo(db.Member);
+    db.ParkingRecord.belongsTo(db.Member, { foreignKey: 'member', targetKey: 'id' });
   }
 };

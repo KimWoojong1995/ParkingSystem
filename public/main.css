@@ -191,9 +191,9 @@ section .join {
 section .login {
     padding: 180px;
 }
-/* parkIn.html */
+/* park.html */
 section .park {
-    padding: 210px;
+    padding: 200px;
 }
 #park-form p {
     text-align: center;

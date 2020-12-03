@@ -1,6 +1,51 @@
 {% extends 'layout.html' %}
 {% block content %}
     <div class="park">
+        {% if price %}
+        <form id="park-form" action="/park/out/cash" method="POST">
+            <input id="carNumber" type="hidden" value={{carNumber}}>
+            <ul>
+                <li>
+                    <p>금액 : <span id="price">{{ price }}</span>원입니다.</p>
+                </li>
+                <li>
+                    <button type="submit" class="btn">현금결제</button>
+                </li>
+                <li>
+                    <button type="button" id="card" class="btn">카드결제</button>
+                </li>
+            </ul>
+        </form>
+        <script>
+            const card = document.getElementById('card');
+            const price = document.getElementById('price').innerText;
+            const carNumber = document.getElementById('carNumber').value;
+            card.addEventListener("click", function () {
+                let cardNumber = isNaN(prompt(`
+                    결제금액은 ${price}원입니다. \n
+                    카드번호를 입력해주세요. ' - '를 제외한 숫자만 입력해주세요.
+                    `
+                ));
+                console.log(cardNumber ,carNumber);
+                while (cardNumber) {
+                    cardNumber = isNaN(prompt(`
+                    결제금액은 ${price}원입니다. \n
+                    ' - '를 제외한 카드번호를 입력해주세요.
+                    `
+                ));
+                };
+                setTimeout(() => {
+                    alert(`${price}원이 정상적으로 결제되었습니다.`);
+                }, 2000);
+    
+                // if (cardNumber) {
+                //     setTimeout(() => {
+                //     alert(`${price}원이 정상적으로 결제되었습니다.`);
+                // }, 2000);
+                // }
+            });
+        </script>
+        {% else %}
         <form id="park-form" action="/park/out" method="POST">
             <ul>
                 <li>
@@ -8,9 +53,13 @@
                     <input id="carNumber" type="text" name="carNumber" required pattern="(\d{2,3})([가-힣])(\d{4})">
                 </li>
                 <li>
+                    <p>{{error}}</p>
+                </li>
+                <li>
                     <button type="submit" class="btn btn--primary">출차하기</button>
                 </li>
             </ul>
         </form>
+        {% endif %}
     </div>
 {% endblock %}

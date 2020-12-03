@@ -13,7 +13,7 @@ module.exports = class Admin extends Sequelize.Model {
       },
     }, {
       sequelize,
-      timestamps: true,
+      timestamps: false,
       underscored: false,
       modelName: 'Admin',
       tableName: 'admins',

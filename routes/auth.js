@@ -8,15 +8,15 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const router = express.Router();
 
 router.get('/join', (req,res) => {
-    res.render('join');
+    res.render('join', { title: 'WJ파크-회원가입' });
 });
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { carNumber, name, password, confirmPassword } = req.body;
+    const { carNumber, name, password } = req.body;
     try {
         const exMember = await Member.findOne({ where: { carNumber } });
         if (exMember) {
-            return res.redirect('/join?error=exist');
+            return res.render('join',{ message: '이미 회원가입되었습니다.' });
         }
         const hash = await bcrypt.hash(password, 12);
         await Member.create({
@@ -32,7 +32,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
 });
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { title: 'WJ파크-로그인' });
 });
 
 router.post('/login', isNotLoggedIn, (req, res, next) => {

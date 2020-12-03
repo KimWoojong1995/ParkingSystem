@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
     <div class="join">
-        <form id="join-form" action="/auth/join" method="POST">
+        <form id="join-form" action="/auth/join" method="POST" onsubmit="return checkPassword()">
             <ul>
                 <li>
                     <label for="carNumber">차량번호</label>
@@ -18,7 +18,9 @@
                 <li>
                     <label for="confirmPassword">비밀번호 확인</label>
                     <input id="confirmPassword" type="password" name="confirmPassword" required>
-                    <p id="message"></p>
+                </li>
+                <li>
+                    <p id="message">{{message}}</p>
                 </li>
                 <li>
                     <button type="submit" class="btn btn--primary">회원가입</button>
@@ -28,15 +30,16 @@
     </div>
 {% endblock %}
 
-<!-- {% block script %}
+{% block script %}
 <script>
     function checkPassword() {
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
         const message = document.getElementById('message');
         if (password != confirmPassword) {
-            message.innerHTML = "비밀번호를 다시 확인해주세요."
+            message.innerHTML = "비밀번호를 다시 확인해주세요.";
+            return false;
         }
     }
 </script>
-{% endblock %} -->
+{% endblock %}
