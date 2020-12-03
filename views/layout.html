@@ -30,11 +30,17 @@
                 </ul>
             </div>
             <div class="btn-group toggle">
+            {% if member and member.id %}
+                <div>
+                    <a href="/auth/login" class="btn login">로그아웃</a>
+                </div>
+            {% else %}
                 <div>
                     <a href="/auth/login" class="btn login">로그인</a>
                     <a href="/auth/join" class="btn btn--primary join">회원가입</a>
                 </div>
             </div>
+            {% endif %}
             <div id="toggle-btn">Header</div>
         </div>
     </header>

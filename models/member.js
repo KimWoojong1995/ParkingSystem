@@ -21,7 +21,8 @@ module.exports = class Member extends Sequelize.Model {
           defaultValue: 'local',
       },
       ticket: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       snsId: {
         type: Sequelize.STRING(30),

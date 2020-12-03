@@ -22,6 +22,6 @@ Admin.init(sequelize);
 
 Member.associate(db);
 ParkingRecord.associate(db);
-Admin.associate(db);
+// Admin.associate(db);
 
 module.exports = db;

@@ -28,10 +28,6 @@ module.exports = class ParkingRecord extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.ParkingRecord.belongsTo(db.Member, {
-      foreignKey: 'followingId',
-      as: 'Followers',
-      through: 'Follow',
-    });
+    db.ParkingRecord.belongsTo(db.Member);
   }
 };

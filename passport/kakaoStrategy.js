@@ -1,7 +1,7 @@
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 
-const User = require('../models/user');
+const Member = require('../models/member');
 
 module.exports = () => {
   passport.use(new KakaoStrategy({
@@ -10,19 +10,19 @@ module.exports = () => {
   }, async (accessToken, refreshToken, profile, done) => {
     console.log('kakao profile', profile);
     try {
-      const exUser = await User.findOne({
+      const exMember = await Member.findOne({
         where: { snsId: profile.id, provider: 'kakao' },
       });
-      if (exUser) {
-        done(null, exUser);
+      if (exMember) {
+        done(null, exMember);
       } else {
-        const newUser = await User.create({
+        const newMember = await Member.create({
           email: profile._json && profile._json.kakao_account_email,
           nick: profile.displayName,
           snsId: profile.id,
           provider: 'kakao',
         });
-        done(null, newUser);
+        done(null, newMember);
       }
     } catch (error) {
       console.error(error);

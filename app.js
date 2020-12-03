@@ -1,17 +1,19 @@
-const dotenv = require('dotenv');
 const express = require('express');
-const path = require('path');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
-
+const dotenv = require('dotenv');
+const passport = require('passport');
 dotenv.config();
+
 const indexRouter = require('./routes');
 const authRouter = require('./routes/auth');
 const parkRouter = require('./routes/park');
-
 const { sequelize } = require('./models');
+const passportConfig = require('./passport');
+
 const app = express();
 
 app.set('port', process.env.PORT || 8001);
@@ -21,13 +23,14 @@ nunjucks.configure('views', {
     express: app,
     watch: true,
 });
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
     .then(() => {
         console.log('데이터베이스 연결 성공');
     })
     .catch((err) => {
         console.error(err);
     });
+passportConfig();
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -43,9 +46,8 @@ app.use(session({
         secure: false,
     },
 }));
-
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
