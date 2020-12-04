@@ -2,47 +2,72 @@
 {% block content %}
     <div class="park">
         {% if price %}
-        <form id="park-form" action="/park/out/cash" method="POST">
+        <form id="park-form">
             <input id="carNumber" type="hidden" value={{carNumber}}>
             <ul>
                 <li>
                     <p>금액 : <span id="price">{{ price }}</span>원입니다.</p>
                 </li>
                 <li>
-                    <button type="submit" class="btn">현금결제</button>
+                    <button id="cash" type="button" class="btn">현금결제</button>
                 </li>
                 <li>
-                    <button type="button" id="card" class="btn">카드결제</button>
+                    <button id="card" type="button" class="btn">카드결제</button>
                 </li>
             </ul>
         </form>
         <script>
+            const cash = document.getElementById('cash');
             const card = document.getElementById('card');
             const price = document.getElementById('price').innerText;
             const carNumber = document.getElementById('carNumber').value;
+
             card.addEventListener("click", function () {
-                let cardNumber = isNaN(prompt(`
-                    결제금액은 ${price}원입니다. \n
-                    카드번호를 입력해주세요. ' - '를 제외한 숫자만 입력해주세요.
-                    `
-                ));
-                console.log(cardNumber ,carNumber);
-                while (cardNumber) {
-                    cardNumber = isNaN(prompt(`
-                    결제금액은 ${price}원입니다. \n
-                    ' - '를 제외한 카드번호를 입력해주세요.
-                    `
-                ));
-                };
-                setTimeout(() => {
-                    alert(`${price}원이 정상적으로 결제되었습니다.`);
-                }, 2000);
-    
-                // if (cardNumber) {
-                //     setTimeout(() => {
-                //     alert(`${price}원이 정상적으로 결제되었습니다.`);
-                // }, 2000);
-                // }
+
+                const payment = prompt(`
+                    결제 금액은 ${price}원입니다. \n
+                    ' - '를 제외한 카드 번호를 입력해주세요.
+                `);
+
+                if (isNaN(payment)) {
+                    alert('숫자만 입력해주세요.');
+                } else if (Number(payment) && !isNaN(payment)){
+                    alert('카드 조회 중...')
+                    alert(`결제 요청 중...`);
+                    setTimeout(() => {
+                        axios.post('/park/out/payment', { carNumber: carNumber });
+                        alert(`${price}원이 정상적으로 결제되었습니다. \n감사합니다.`);
+                        return window.location.href = '/park/out';
+                    }, 2000);
+                } else {
+                    alert('결제가 취소되었습니다.');
+                }
+                return;
+            });
+            
+            cash.addEventListener("click",function() {
+
+                const payment = prompt(`
+                    결제 금액은 ${price}원입니다. \n
+                    ' 원 '을 제외한 금액을 입력해주세요.
+                    `);
+
+                const result = payment - price;
+                
+                if (Number(payment) && !isNaN(payment)) {
+                    if (result >= 0) {
+                        axios.post('/park/out/payment', { carNumber: carNumber });
+                        alert(`결제가 완료되었습니다.\n거스름돈은 ${result}원입니다.`);
+                        return window.location.href = '/park/out';
+                    } else {
+                        alert('금액이 부족합니다.');
+                    }
+                } else if (isNaN(payment)) {
+                    alert('숫자만 입력해주세요.');
+                } else {
+                    alert('결제가 취소되었습니다.');
+                }
+                return false;
             });
         </script>
         {% else %}
@@ -53,7 +78,7 @@
                     <input id="carNumber" type="text" name="carNumber" required pattern="(\d{2,3})([가-힣])(\d{4})">
                 </li>
                 <li>
-                    <p>{{error}}</p>
+                    <p>{{message}}</p>
                 </li>
                 <li>
                     <button type="submit" class="btn btn--primary">출차하기</button>

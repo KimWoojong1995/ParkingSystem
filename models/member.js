@@ -7,9 +7,10 @@ module.exports = class Member extends Sequelize.Model {
         type: Sequelize.STRING(15),
         allowNull: false,
       },
-      name: {
-        type: Sequelize.STRING(10),
-        allowNull: false,
+      email: {
+        type: Sequelize.STRING(40),
+        allowNull: true,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING(100),
