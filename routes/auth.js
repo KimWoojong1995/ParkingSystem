@@ -16,7 +16,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
     try {
         const exMember = await Member.findOne({ where: { carNumber } });
         if (exMember) {
-            return res.render('join',{ message: '이미 회원가입되었습니다.' });
+            return res.render('join',{ title: 'WJ파크-회원가입', message: '이미 회원가입되었습니다.' });
         }
         const hash = await bcrypt.hash(password, 12);
         await Member.create({
@@ -42,7 +42,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
             return next(authError);
         }
         if (!member) {
-            return res.render('login', { message: info.message });
+            return res.render('login', { title: 'WJ파크-로그인', message: info.message });
         }
         return req.login(member, (loginError) => {
             if (loginError) {

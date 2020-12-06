@@ -21,7 +21,7 @@ router.post('/in', async (req, res, next) => {
         const exMember = await Member.findOne({ where: { carNumber } });
 
         if (exParkingRecord) {
-            return res.render('parkIn', { text: '이미 주차한 차량입니다.' });
+            return res.render('parkIn', { title: 'WJ파크-주차하기', message: '이미 주차한 차량입니다.' });
         } else if (exMember) {
             await ParkingRecord.create({
                 carNumber,
@@ -32,7 +32,7 @@ router.post('/in', async (req, res, next) => {
                 carNumber,
             });
         }
-        return res.render('parkIn', { text: '주차되었습니다.' });
+        return res.render('parkIn', { title: 'WJ파크-주차하기', message: '주차되었습니다.' });
     } catch (error) {
         console.error(error);
         return next(error);
@@ -56,9 +56,9 @@ router.post('/out', async (req, res, next) => {
         const exMember = await Member.findOne({ where : { carNumber } });
 
         if (!exParkingRecord) {
-            return res.render('parkOut', { message: '한 번도 주차되지 않은 차량입니다.' });
+            return res.render('parkOut', { title: 'WJ파크-출차하기', message: '한 번도 주차되지 않은 차량입니다.' });
         } else if (exParkingRecord.outTime) {
-            return res.render('parkOut', { message: '이미 출차한 차량입니다.' });
+            return res.render('parkOut', { title: 'WJ파크-출차하기', message: '이미 출차한 차량입니다.' });
         }
 
         const inTime = exParkingRecord.inTime;
@@ -80,11 +80,11 @@ router.post('/out', async (req, res, next) => {
                 },
             },
             );
-            return res.render('parkOut', { message: '(정기권) 출차되었습니다.' });
+            return res.render('parkOut', { title: 'WJ파크-출차하기', message: '(정기권) 출차되었습니다.' });
         } else if (exMember) {
-            return res.render('parkOut', { price: memberPrice, carNumber });
+            return res.render('parkOut', { title: 'WJ파크-결제하기', price: memberPrice, carNumber });
         }
-        return res.render('parkOut', { price: price, carNumber });
+        return res.render('parkOut', { title: 'WJ파크-결제하기', price: price, carNumber });
     } catch (error) {
         console.error(error);
         return next(error);
