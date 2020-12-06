@@ -4,8 +4,8 @@
         <form id="join-form" action="/auth/join" method="POST" onsubmit="return checkPassword()">
             <ul>
                 <li>
-                    <label for="carNumber">차량번호</label>
-                    <input id="carNumber" type="text" name="carNumber" required pattern="(\d{2,3})([가-힣])(\d{4})">
+                    <label for="car-number">차량번호</label>
+                    <input id="car-number" type="text" name="carNumber" required pattern="(\d{2,3})([가-힣])(\d{4})">
                 </li>
                 <li>
                     <label for="email">이메일</label>
@@ -16,8 +16,8 @@
                     <input id="password" type="password" name="password" required>
                 </li>
                 <li>
-                    <label for="confirmPassword">비밀번호 확인</label>
-                    <input id="confirmPassword" type="password" name="confirmPassword" required>
+                    <label for="confirm-password">비밀번호 확인</label>
+                    <input id="confirm-password" type="password" name="confirmPassword" required>
                 </li>
                 <li>
                     <p id="message">{{message}}</p>
@@ -32,14 +32,14 @@
 
 {% block script %}
 <script>
-    function checkPassword() {
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const message = document.getElementById('message');
-        if (password != confirmPassword) {
-            message.innerHTML = "비밀번호를 다시 확인해주세요.";
-            return false;
-        }
-    }
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const message = document.getElementById('message');
+            if (password != confirmPassword) {
+                message.innerHTML = "비밀번호를 다시 확인해주세요.";
+                return false;
+            }
+        };
 </script>
 {% endblock %}

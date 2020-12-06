@@ -29,6 +29,10 @@ module.exports = class Member extends Sequelize.Model {
         type: Sequelize.STRING(30),
         allowNull: true,
       },
+      admin: {
+          type: Sequelize.BOOLEAN,
+          allowNull: true,
+      },
     }, {
       sequelize,
       timestamps: true,

@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="ticket">
+        <form id="ticket-form">
+            <ul>
+            {% if member and member.id %}
+                <li>
+                    <label for="ticket">서비스 기간</label>
+                    <select id="ticket" name="ticket" onchange="selectTicket()">
+                        <option value="1">1달</option>
+                        <option value="3">3달</option>
+                        <option value="6">6달</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="car-number">차량번호</label>
+                    <input id="car-number" type="text" value={{member.carNumber}} readonly>
+                </li>
+                <li>
+                    <p>결제금액은 <span id="price">150000</span>원입니다.</p>
+                </li>
+                <li>
+                    <button id="cash" type="button" class="btn">현금결제</button>
+                </li>
+                <li>
+                    <button id="card" type="button" class="btn">카드결제</button>
+                </li>
+    <script>
+        const cash = document.getElementById('cash');
+        const card = document.getElementById('card');
+        const carNumber = document.getElementById('car-number').value;
+        const ticket = document.getElementById('ticket');
+        
+        function selectTicket() {
+            const ticketValue = ticket.options[ticket.selectedIndex].value;
+            const price = document.getElementById('price');
+            if (ticketValue === "3") {
+                price.innerText = '400000';
+            } else if (ticketValue === "6") {
+                price.innerText = '700000';
+            } else {
+                price.innerText = '150000';
+            }
+        };
+
+        cash.addEventListener("click",function() {
+            const price = document.getElementById('price').innerText;
+
+            const payment = prompt(`
+                결제 금액은 ${price}원입니다. \n
+                ' 원 '을 제외한 금액을 입력해주세요.
+                `);
+
+            const result = payment - price;
+            
+            if (Number(payment) && !isNaN(payment)) {
+                if (result >= 0) {
+                    axios.post('/payment/ticket', { carNumber: carNumber, ticket: ticket.value });
+                    alert(`결제가 완료되었습니다.\n거스름돈은 ${result}원입니다.`);
+                    return window.location.href = '/';
+                } else {
+                    alert('금액이 부족합니다.');
+                }
+            } else if (isNaN(payment)) {
+                alert('숫자만 입력해주세요.');
+            } else {
+                alert('결제가 취소되었습니다.');
+            }
+            return false;
+        });
+
+        card.addEventListener("click", function () {
+            const price = document.getElementById('price').innerText;
+            console.log(carNumber, ticket.value)
+
+            const payment = prompt(`
+                결제 금액은 ${price}원입니다. \n
+                ' - '를 제외한 카드 번호를 입력해주세요.
+            `);
+
+            if (isNaN(payment)) {
+                alert('숫자만 입력해주세요.');
+            } else if (Number(payment) && !isNaN(payment)){
+                alert('카드 조회 중...')
+                alert(`결제 요청 중...`);
+                setTimeout(() => {
+                    axios.post('/payment/ticket', { carNumber: carNumber, ticket: ticket.value });
+                    alert(`${price}원이 정상적으로 결제되었습니다. \n감사합니다.`);
+                    return window.location.href = '/';
+                }, 2000);
+            } else {
+                alert('결제가 취소되었습니다.');
+            }
+            return;
+        });
+    </script>
+                {% else %}
+                <li id="check-member">
+                    <p>
+                        회원가입 후 결제 가능합니다.
+                    </p>
+                </li>
+                {% endif %}
+            </ul>
+        </form>
+    </div>
+{% endblock %}

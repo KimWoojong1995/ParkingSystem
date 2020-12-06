@@ -10,18 +10,12 @@ a {
 }
 
 /* COMMON */
+section,
 .inner {
     max-width: 980px;
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
-}
-.home a {
-    color: #3c4146;
-    display: block;
-    font-size: 20px;
-    font-weight: 800;
-    margin-left: 10px;
 }
 
 /* FLOAT CLEARFIX */
@@ -61,7 +55,8 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(211, 210, 210, 0.7);
+    /* background: rgba(211, 210, 210, 0.7); */
+    background: rgba(0, 0, 0, 0.05);
 }
 .btn.btn--primary {
     border: 1px solid #65b836;
@@ -71,8 +66,8 @@ a {
 
 /* HEADER */
 header {
-    border-bottom: 1px solid rgba(0, 0, 0, .75);
-    box-shadow: 0 0 5px rgba(0, 0, 0, .75);
+    border-bottom: 1px solid #e4e8eb;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.12);
     background: #fff;
 }
 header .inner {
@@ -86,12 +81,20 @@ header .menu-group, header .home{
     align-items: center;
     height: 100%;
 }
+header .home a {
+    color: #51abf3;
+    display: block;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 10px;
+}
 header .main-menu {
     display: flex;
 }
 header .main-menu li a {
     display: block;
     padding: 40px;
+    font-weight: 600;
     color: #3c4146;
 }
 header .main-menu li a:hover {
@@ -105,7 +108,12 @@ header .btn-group {
 header .btn-group div {
     display: flex;
 }
-header .btn-group .login {
+header .btn-group .login,
+header .btn-group .left {
+    margin-right: 5px;
+}
+header .btn-group .ticket-info {
+    font-size: 14px;
     margin-right: 5px;
 }
 #toggle-btn {
@@ -149,31 +157,39 @@ section .summary p {
     text-shadow: 0 1px 1px rgba(0, 0, 0, .25),
                  0 1px 25px rgba(0, 0, 0, 0.75);
 }
-/* COMMON */
+/* SECTION COMMON */
 section .join,
 section .login,
-section .park {
+section .park,
+section .ticket {
     width: 340px;
     margin: 0 auto;
 }
-/* join.html */
-section .join {
-    padding: 150px;
-}
-#join-form, #login-form, #park-form {
+#join-form,
+#login-form,
+#park-form,
+#ticket-form {
     color: #fff;
     padding-top: 30px;
     font-size: 20px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .25),
                  0 1px 25px rgba(0, 0, 0, 0.75);
 }
-#join-form li, #login-form li, #park-form li {
+#join-form li,
+#login-form li,
+#park-form li,
+#ticket-form li {
     margin-bottom: 17px;
 }
-#join-form li:last-child, #login-form:last-child {
+#join-form li:last-child,
+#login-form:last-child {
     margin-bottom: 0;
 }
-#join-form input, #login-form input, #park-form input {
+#join-form input,
+#login-form input,
+#park-form input,
+#ticket-form input,
+#ticket {
     width: 100%;
     height: 40px;
     font-size: 20px;
@@ -181,29 +197,45 @@ section .join {
     padding: 0 10px;
     border: 0;
 }
-#join-form button, #login-form button, #park-form button {
+#join-form button,
+#login-form button,
+#park-form button,
+#ticket-form button {
     width: 100%;
     height: 48px;
     font-size: 20px;
     justify-content: center;
 }
+/* join.html */
+section .join {
+    padding: 150px;
+}
 /* login.html */
 section .login {
     padding: 180px;
 }
-/* park.html */
+/* park.html, ticket.html */
 section .park {
     padding: 200px;
 }
-#park-form p {
+#park-form p,
+#ticket-form p {
     text-align: center;
 }
-
+section .ticket {
+    padding: 180px;
+}
+#check-member {
+    margin-top: 100px;
+    font-size: 25px;
+}
 
 /* Footer */
+footer {
+    border-top: 1px solid #e4e8eb;
+}
 footer .inner {
     padding: 50px 0;
-    border-top: 1px solid #eee;
     display: flex;
     justify-content: space-evenly;
 }
@@ -216,7 +248,7 @@ footer .site-links li, .made {
     color: #767676;
 }
 footer .site-links li a {
-    color: #4078c0;
+    color: #51abf3;
 }
 footer .site-links li a:hover {
     text-decoration: underline;

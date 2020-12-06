@@ -3,7 +3,7 @@
     <div class="park">
         {% if price %}
         <form id="park-form">
-            <input id="carNumber" type="hidden" value={{carNumber}}>
+            <input id="car-number" type="hidden" value={{carNumber}}>
             <ul>
                 <li>
                     <p>금액 : <span id="price">{{ price }}</span>원입니다.</p>
@@ -16,60 +16,60 @@
                 </li>
             </ul>
         </form>
-        <script>
-            const cash = document.getElementById('cash');
-            const card = document.getElementById('card');
-            const price = document.getElementById('price').innerText;
-            const carNumber = document.getElementById('carNumber').value;
+    <script>
+        const cash = document.getElementById('cash');
+        const card = document.getElementById('card');
+        const price = document.getElementById('price').innerText;
+        const carNumber = document.getElementById('car-number').value;
 
-            card.addEventListener("click", function () {
+        card.addEventListener("click", function () {
 
-                const payment = prompt(`
-                    결제 금액은 ${price}원입니다. \n
-                    ' - '를 제외한 카드 번호를 입력해주세요.
+            const payment = prompt(`
+                결제 금액은 ${price}원입니다. \n
+                ' - '를 제외한 카드 번호를 입력해주세요.
+            `);
+
+            if (isNaN(payment)) {
+                alert('숫자만 입력해주세요.');
+            } else if (Number(payment) && !isNaN(payment)){
+                alert('카드 조회 중...')
+                alert(`결제 요청 중...`);
+                setTimeout(() => {
+                    axios.post('/payment/out', { carNumber: carNumber });
+                    alert(`${price}원이 정상적으로 결제되었습니다. \n감사합니다.`);
+                    return window.location.href = '/park/out';
+                }, 2000);
+            } else {
+                alert('결제가 취소되었습니다.');
+            }
+            return;
+        });
+        
+        cash.addEventListener("click",function() {
+
+            const payment = prompt(`
+                결제 금액은 ${price}원입니다. \n
+                ' 원 '을 제외한 금액을 입력해주세요.
                 `);
 
-                if (isNaN(payment)) {
-                    alert('숫자만 입력해주세요.');
-                } else if (Number(payment) && !isNaN(payment)){
-                    alert('카드 조회 중...')
-                    alert(`결제 요청 중...`);
-                    setTimeout(() => {
-                        axios.post('/park/out/payment', { carNumber: carNumber });
-                        alert(`${price}원이 정상적으로 결제되었습니다. \n감사합니다.`);
-                        return window.location.href = '/park/out';
-                    }, 2000);
-                } else {
-                    alert('결제가 취소되었습니다.');
-                }
-                return;
-            });
+            const result = payment - price;
             
-            cash.addEventListener("click",function() {
-
-                const payment = prompt(`
-                    결제 금액은 ${price}원입니다. \n
-                    ' 원 '을 제외한 금액을 입력해주세요.
-                    `);
-
-                const result = payment - price;
-                
-                if (Number(payment) && !isNaN(payment)) {
-                    if (result >= 0) {
-                        axios.post('/park/out/payment', { carNumber: carNumber });
-                        alert(`결제가 완료되었습니다.\n거스름돈은 ${result}원입니다.`);
-                        return window.location.href = '/park/out';
-                    } else {
-                        alert('금액이 부족합니다.');
-                    }
-                } else if (isNaN(payment)) {
-                    alert('숫자만 입력해주세요.');
+            if (Number(payment) && !isNaN(payment)) {
+                if (result >= 0) {
+                    axios.post('/payment/out', { carNumber: carNumber });
+                    alert(`결제가 완료되었습니다.\n거스름돈은 ${result}원입니다.`);
+                    return window.location.href = '/park/out';
                 } else {
-                    alert('결제가 취소되었습니다.');
+                    alert('금액이 부족합니다.');
                 }
-                return false;
-            });
-        </script>
+            } else if (isNaN(payment)) {
+                alert('숫자만 입력해주세요.');
+            } else {
+                alert('결제가 취소되었습니다.');
+            }
+            return false;
+        });
+    </script>
         {% else %}
         <form id="park-form" action="/park/out" method="POST">
             <ul>

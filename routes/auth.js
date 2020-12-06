@@ -2,12 +2,12 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
-const Member = require('../models/member');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const { Member } = require('../models');
 
 const router = express.Router();
 
-router.get('/join', (req,res) => {
+router.get('/join', isNotLoggedIn, (req,res) => {
     res.render('join', { title: 'WJ파크-회원가입' });
 });
 
@@ -31,7 +31,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
     }
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', isNotLoggedIn, (req, res) => {
     res.render('login', { title: 'WJ파크-로그인' });
 });
 
@@ -42,7 +42,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
             return next(authError);
         }
         if (!member) {
-            return res.redirect(`/?loginError=${info.message}`);
+            return res.render('login', { message: info.message });
         }
         return req.login(member, (loginError) => {
             if (loginError) {

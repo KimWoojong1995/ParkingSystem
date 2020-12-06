@@ -27,13 +27,25 @@
                     <li><a href="/park/in">주차하기</a></li>
                     <li><a href="/park/out">출차하기</a></li>
                     <li><a href="/ticket">정기권</a></li>
-                    <li><a href="/Plan">요금안내</a></li>
+                    <li><a href="/plan">요금안내</a></li>
                 </ul>
             </div>
             <div class="btn-group toggle">
-            {% if member and member.id %}
+            {% if member.admin %}
                 <div>
-                    <a href="/auth/login" class="btn login">로그아웃</a>
+                    <a href="/admin" class="btn btn--primary left">관리자 페이지</a>
+                </div>
+                <div>
+                    <a href="/auth/logout" class="btn">로그아웃</a>
+                </div>
+            {% elif member and member.id %}
+                {% if member.ticket %}
+                <div>
+                    <div class="ticket-info">{{member.ticket.toLocaleString()}}</div>
+                </div>
+                {% endif %}
+                <div>
+                    <a href="/auth/logout" class="btn">로그아웃</a>
                 </div>
             {% else %}
                 <div>
