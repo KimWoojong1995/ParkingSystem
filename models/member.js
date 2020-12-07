@@ -6,27 +6,14 @@ module.exports = class Member extends Sequelize.Model {
       carNumber: {
         type: Sequelize.STRING(15),
         allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING(40),
-        allowNull: true,
         unique: true,
       },
       password: {
         type: Sequelize.STRING(100),
         allowNull: true,
       },
-      provider: {
-          type: Sequelize.STRING(10),
-          allowNull: false,
-          defaultValue: 'local',
-      },
       ticket: {
         type: Sequelize.DATE,
-        allowNull: true,
-      },
-      snsId: {
-        type: Sequelize.STRING(30),
         allowNull: true,
       },
       admin: {

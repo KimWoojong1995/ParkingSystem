@@ -130,7 +130,7 @@ header .btn-group .ticket-info {
 
 /* SECTION */
 section {
-    background: url(bg-parking.png) no-repeat;
+    background: url(img/bg-parking.png) no-repeat;
     background-position: bottom left;
     background-size: cover;
     height: 750px;
@@ -210,7 +210,7 @@ section .plan {
 }
 /* join.html */
 section .join {
-    padding: 150px;
+    padding: 180px;
 }
 /* login.html */
 section .login {
@@ -246,10 +246,36 @@ section .plan .ticket-table {
     margin-top: 20px;
     background: rgba(255, 255, 255, 0.9);
 }
-section .plan  th, td {
+section .plan  th, td,
+section .parking-record th, td,
+section .member-record th, td {
     border: 1px solid #3c4146;
     padding: 5px;
     text-align: center;
+}
+/* admin.html */
+section #admin {
+    display: flex;
+    padding-top: 30px;
+    width: 400px;
+    margin: 0 auto;
+    justify-content: center;
+}
+#admin a {
+    font-size: 20px;
+    justify-content: center;
+    width: 170px;
+    margin: 0 10px;
+}
+section #admin div:first-child {
+    margin-bottom: 10px;
+}
+section .parking-record,
+section .member-record {
+    /* font-size: 16px; */
+    width: 600px;
+    margin: 20px auto 0;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 /* Footer */

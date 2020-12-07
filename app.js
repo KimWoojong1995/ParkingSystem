@@ -14,6 +14,7 @@ const parkRouter = require('./routes/park');
 const paymentRouter = require('./routes/payment');
 const ticketRouter = require('./routes/ticket');
 const planRouter = require('./routes/plan');
+const adminRouter = require('./routes/admin');
 const { sequelize } = require('./models');
 
 const app = express();
@@ -58,6 +59,7 @@ app.use('/park', parkRouter);
 app.use('/payment', paymentRouter);
 app.use('/ticket', ticketRouter);
 app.use('/plan', planRouter);
+app.use('/admin', adminRouter);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

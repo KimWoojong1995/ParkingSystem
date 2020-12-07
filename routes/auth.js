@@ -12,7 +12,7 @@ router.get('/join', isNotLoggedIn, (req,res) => {
 });
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { carNumber, email, password } = req.body;
+    const { carNumber, password } = req.body;
     try {
         const exMember = await Member.findOne({ where: { carNumber } });
         if (exMember) {
@@ -21,7 +21,6 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
         const hash = await bcrypt.hash(password, 12);
         await Member.create({
             carNumber,
-            email,
             password: hash,
         });
         return res.redirect('/');

@@ -1,44 +1,74 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <div class="plan">
-        <div id="plan">
-            <table class="basic-table">
-                <tr>
-                    <th>기본 요금</th>
-                </tr>
-                <tr>
-                    <td>10분당 1000원</td>
-                </tr>
-            </table>
-            <table class="ticket-table">
-                <tr>
-                    <th colspan="2">정기권</th>
-                </tr>
-                <tr>
-                    <td>
-                        1개월
-                    </td>
-                    <td>
-                        150000원
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        3개월
-                    </td>
-                    <td>
-                        400000원
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        6개월
-                    </td>
-                    <td>
-                        700000원
-                    </td>
-                </tr>
-            </table>
+    <div class="admin">
+        <div id="admin">
+            <div>
+                <a href="/admin/park/record" class="btn">주차 기록</a>
+            </div>
+            <div>
+                <a href="/admin/member/record" class="btn">회원 기록</a>
+            </div>
         </div>
     </div>
+    {% if parkingRecord %}
+    <table class="parking-record">
+        <tr>
+            <th>차량 번호</th>
+            <th>입차시간</th>
+            <th>출차시간</th>
+            <th>결제</th>
+            <th>삭제</th>
+        </tr>
+        {% for parkingRecord in parkingRecord %}
+            <tr>
+                <td>{{parkingRecord.carNumber}}</td>
+                <td>{{parkingRecord.inTime.toLocaleString()}}</td>
+                {% if parkingRecord.outTime %}
+                    <td>{{parkingRecord.outTime.toLocaleString()}}</td>
+                {% else %}
+                    <td>주차중</td>
+                {% endif %}
+                <td>{{parkingRecord.paid}}</td>
+                <td>
+                    <form action="/admin/park/record/delete" method="POST">
+                        <input type="hidden" name="id" value={{parkingRecord.id}}>
+                        <input type="submit" value="삭제">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif memberRecord %}
+        <table class="member-record">
+            <tr>
+                <th>차량 번호</th>
+                <th>가입일</th>
+                <th>정기권</th>
+                <th>삭제</th>
+            </tr>
+            <tr>
+              <td>11가1111</td>
+              <td>관리자</td>
+              <td>관리자</td>
+              <td>불가</td>  
+            </tr>
+            {% for memberRecord in memberRecord %}
+                <tr>
+                    <td>{{memberRecord.carNumber}}</td>
+                    <td>{{memberRecord.createdAt.toLocaleString()}}</td>
+                    {% if memberRecord.ticket %}
+                        <td>{{memberRecord.ticket.toLocaleString()}}</td>
+                    {% else %}
+                        <td>없음</td>
+                    {% endif %}
+                    <td>
+                        <form action="/admin/member/record/delete" method="POST">
+                            <input type="hidden" name="id" value={{memberRecord.id}}>
+                            <input type="submit" value="삭제">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+    {% endif %}
 {% endblock %}

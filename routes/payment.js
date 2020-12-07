@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { ParkingRecord, Member } = require('../models');
 
-router.post('/out', async (req, res, next) => {
+router.patch('/out', async (req, res, next) => {
     const { carNumber } = req.body;
     try {
         const exParkingRecord = await ParkingRecord.findOne({
@@ -33,7 +33,7 @@ router.post('/out', async (req, res, next) => {
     }
 });
 
-router.post('/ticket', async (req, res, next) => {
+router.patch('/ticket', async (req, res, next) => {
     const { carNumber, ticket } = req.body;
     try {
         const exMember = await Member.findOne({where: { carNumber }});
