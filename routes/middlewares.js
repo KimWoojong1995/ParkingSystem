@@ -2,7 +2,7 @@
      if (req.isAuthenticated()) {
          next();
      } else {
-         res.status(403).send('로그인이 필요한 페이지입니다.');
+         res.render('error', { memberMessage: '로그인이 필요합니다.' });
      }
  };
 
@@ -10,6 +10,6 @@
     if (!req.isAuthenticated()) {
         next();
     } else {
-        res.status(403).send('로그인한 상태입니다.');
+        res.render('error', { memberMessage: '이미 로그인한 상태입니다.' });
     }
  };

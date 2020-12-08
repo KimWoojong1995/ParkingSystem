@@ -1,6 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+{% if memberMessage %}
+    <div class="inner">
+        <div class="summary">
+            <h2>
+                {{ memberMessage }}
+            </h2>
+        </div>
+    </div>
+{% else %}
     <div class="inner">
         <div class="summary">
             <h2>{{message}}</h2>
@@ -8,4 +17,5 @@
             <p>{{error.stack}}</p>
         </div>
     </div>
+{% endif %}
 {% endblock %}

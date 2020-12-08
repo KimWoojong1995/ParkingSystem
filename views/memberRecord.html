@@ -1,0 +1,38 @@
+{% extends 'admin.html' %}
+{% block table %}
+<table class="member-record">
+    <tr>
+        <th>차량 번호</th>
+        <th>가입일</th>
+        <th>정기권</th>
+        <th>삭제</th>
+    </tr>
+    {% for memberRecord in memberRecord %}
+    <tr>
+        <td>{{memberRecord.carNumber}}</td>
+        <td>{{memberRecord.createdAt.toLocaleString()}}</td>
+        {% if memberRecord.ticket %}
+        <td>{{memberRecord.ticket.toLocaleString()}}</td>
+        {% else %}
+        <td>없음</td>
+        {% endif %}
+        <td>
+            <form action="/admin/member/record/delete" method="POST">
+                <input type="hidden" name="id" value={{memberRecord.id}}>
+                <input type="submit" value="삭제">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="pagination-wrapper">
+    <ul id="pagination">
+        {% set length = pages %}
+        {% for i in range(0, length) %}
+        <li>
+            <a href={{i + 1}}><button>{{i + 1}}</button></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

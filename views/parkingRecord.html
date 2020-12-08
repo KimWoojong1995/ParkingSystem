@@ -1,0 +1,41 @@
+{% extends 'admin.html' %}
+{% block table %}
+<table class="parking-record">
+    <tr>
+        <th>차량 번호</th>
+        <th>입차시간</th>
+        <th>출차시간</th>
+        <th>결제</th>
+        <th>삭제</th>
+    </tr>
+    <input id="total-data" type="hidden" value="{{totalData}}">
+    {% for parkingRecord in parkingRecord %}
+    <tr>
+        <td>{{parkingRecord.carNumber}}</td>
+        <td>{{parkingRecord.inTime.toLocaleString()}}</td>
+        {% if parkingRecord.outTime %}
+        <td>{{parkingRecord.outTime.toLocaleString()}}</td>
+        {% else %}
+        <td>주차중</td>
+        {% endif %}
+        <td>{{parkingRecord.paid}}</td>
+        <td>
+            <form action="/admin/park/record/delete" method="POST">
+                <input type="hidden" name="id" value={{parkingRecord.id}}>
+                <input type="submit" value="삭제">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="pagination-wrapper">
+    <ul id="pagination">
+        {% set length = pages %}
+        {% for i in range(0, length) %}
+        <li>
+            <a href={{i + 1}}><button>{{i + 1}}</button></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
