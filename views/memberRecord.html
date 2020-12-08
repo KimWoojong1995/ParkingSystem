@@ -27,10 +27,9 @@
 </table>
 <div class="pagination-wrapper">
     <ul id="pagination">
-        {% set length = pages %}
-        {% for i in range(0, length) %}
+        {% for i in range(0, pages) %}
         <li>
-            <a href={{i + 1}}><button>{{i + 1}}</button></a>
+            <a class="btn" href={{i + 1}}>{{i + 1}}</a>
         </li>
         {% endfor %}
     </ul>
