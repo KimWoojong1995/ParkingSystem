@@ -118,7 +118,7 @@ header .btn-group .ticket-info {
 }
 #toggle-btn {
     display: none;
-    background: url("../img/toggle-btn.svg");
+    background: url("img/toggle-btn.svg");
     width: 18px;
     height: 24px;
     position: absolute;
@@ -277,15 +277,15 @@ section .member-record {
     background: rgba(255, 255, 255, 0.9);
 }
 /* pagination */
-.pagination-wrapper {
+.pages-wrapper {
     width: 600px;
     margin: 5px auto 0;
 }
-#pagination {
+#pages {
     display: flex;
     justify-content: center;
 }
-#pagination .btn {
+#pages .btn {
     margin: 0 2px;
     height: 25px;
     padding: 0 7px;

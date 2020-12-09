@@ -7,6 +7,7 @@
         <th>정기권</th>
         <th>삭제</th>
     </tr>
+    <input id="total-data" type="hidden" value="{{totalData}}">
     {% for memberRecord in memberRecord %}
     <tr>
         <td>{{memberRecord.carNumber}}</td>
@@ -19,19 +20,23 @@
         <td>
             <form action="/admin/member/record/delete" method="POST">
                 <input type="hidden" name="id" value={{memberRecord.id}}>
+                <input type="hidden" name="pageNum" value={{pageNum}}>
                 <input type="submit" value="삭제">
             </form>
         </td>
     </tr>
     {% endfor %}
 </table>
-<div class="pagination-wrapper">
-    <ul id="pagination">
-        {% for i in range(0, pages) %}
-        <li>
-            <a class="btn" href={{i + 1}}>{{i + 1}}</a>
-        </li>
-        {% endfor %}
+<div class="pages-wrapper">
+    <ul id="pages">
     </ul>
 </div>
+<script src="/js/pagination.js"></script>
+<script>
+    const totalData = document.getElementById('total-data').value;
+    const currentPage = location.href.split('record/').pop();
+    const pages = document.getElementById('pages');
+    
+    pagination(totalData, currentPage, pages);
+</script>
 {% endblock %}

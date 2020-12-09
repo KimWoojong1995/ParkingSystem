@@ -21,8 +21,7 @@ router.get('/park/record/:page', isLoggedIn, async (req, res) => {
             offset: offset,
         })
         const totalData = Object.keys(await ParkingRecord.findAll()).length;
-        const pages = Math.ceil(totalData / 10);
-        return res.render('parkingRecord', { title: 'WJ파크-주차기록', parkingRecord, pages });
+        return res.render('parkingRecord', { title: 'WJ파크-주차기록', parkingRecord, pageNum, totalData });
     } catch (error) {
         console.error(error);
         return next(error);
@@ -30,19 +29,14 @@ router.get('/park/record/:page', isLoggedIn, async (req, res) => {
 });
 
 router.post('/park/record/delete', isLoggedIn, async (req, res) => {
-    const { id } = req.body;
+    const { id, pageNum } = req.body;
+    console.log(pageNum);
     try {
         const exParkingRecord = await ParkingRecord.findOne({ where: { id }});
         if (exParkingRecord) {
             await ParkingRecord.destroy({ where: { id }});
         }
-        const parkingRecord = await ParkingRecord.findAll({
-            order: [['id', 'DESC']],
-            limit: 10
-        });
-        const totalData = Object.keys(await ParkingRecord.findAll()).length;
-        const pages = Math.ceil(totalData / 10);
-        return res.render('parkingRecord', { title: 'WJ파크-주차기록', parkingRecord, pages });
+        return res.redirect(`/admin/park/record/${pageNum}`);
     } catch (error) {
         console.error(error);
         return next(error);
@@ -63,8 +57,7 @@ router.get('/member/record/:page', isLoggedIn, async (req, res) => {
             offset: offset,
         })
         const totalData = Object.keys(await Member.findAll({ where: { admin: null } })).length;
-        const pages = totalData / 10;
-        return res.render('memberRecord', { title: 'WJ파크-회원기록', memberRecord,  pages });
+        return res.render('memberRecord', { title: 'WJ파크-회원기록', memberRecord, pageNum,  totalData });
     } catch (error) {
         console.error(error);
         return next(error);
@@ -72,20 +65,13 @@ router.get('/member/record/:page', isLoggedIn, async (req, res) => {
 });
 
 router.post('/member/record/delete', isLoggedIn, async (req, res) => {
-    const { id } = req.body;
+    const { id, pageNum } = req.body;
     try {
         const exMember = await Member.findOne({ where: { id }});
         if (exMember) {
             await Member.destroy({ where: { id }});
         }
-        const memberRecord = await Member.findAll({
-            where: { admin: null },
-            order: [['id', 'DESC']],
-            limit: 10,
-        });
-        const totalData = Object.keys(await Member.findAll({ where: { admin: null } })).length;
-        const pages = totalData / 10;
-        return res.render('memberRecord', { title: 'WJ파크-회원기록', memberRecord, pages });
+        return res.redirect(`/admin/member/record/${pageNum}`);
     } catch (error) {
         console.error(error);
         return next(error);
