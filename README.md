@@ -2,6 +2,7 @@
 
 평소 주차장 이용 시 무인 결제 시스템의 원리와 구조가 궁금했습니다.<br />
 단순한 호기심으로 시작해 UML을 작성해보고 MySQL DB 구조를 만들었습니다.<br />
+<img width="584" alt="주차장EERDiagram" src="https://user-images.githubusercontent.com/65944245/101730741-ebac3300-3afd-11eb-80ad-6e453cfe1fae.png"><br />
 View는 Nunjucks를 사용해 만들었으며 latout.html을 상속해서 전체적인 구조 틀과 로그인, 회원가입, 로그아웃, 정기권 만기일, 관리자 페이지를 보여줍니다.<br />
 정규표현식을 사용해 input 값의 차량번호를 입력할 수 있으며 숫자 2~3자리,한글 한 글자,숫자 4자리 조합으로 입력 가능합니다.<br />
 결제는 Front에서 현금과 카드결제 로직을 만들었습니다. 현금 결제시 거스름돈을 돌려주고 카드 결제시 실제 카드 결제 작동처럼 setTimeout을 사용하였습니다.<br />
