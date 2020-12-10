@@ -1,5 +1,5 @@
 # 주차장 무인 결제 시스템 <br />
-<a href="https://www.youtube.com/watch?v=rH9jyhNQZ0k">작동 영상</a> <br /><br />
+<br /><br /><a href="https://www.youtube.com/watch?v=rH9jyhNQZ0k">작동 영상</a> <br /><br />
 ![관리자주차기록](https://user-images.githubusercontent.com/65944245/101732267-49417f00-3b00-11eb-91db-1ef80a0339b2.png)<br /><br />
 평소 주차장 이용 시 무인 결제 시스템의 원리와 구조가 궁금했습니다.<br />
 단순한 호기심으로 시작해 UML을 작성해보고 MySQL DB 구조를 만들었습니다.<br /><br />
