@@ -21,3 +21,9 @@ DB는 Sequelize를 사용하며 해당 유저에 대한 테이블을 체크 후 
 페이징 처리 기능을 구현하면서 잦은 에러와 코드의 문제점 등을 경험하면서 더 많은 학습과 경험이 필요하다 느꼈습니다.<br />
 이번 프로젝트로 개발 초기 단계의 구상부터 웹 개발의 전체적인 흐름을 알 수 있었으며 정규표현식의 이해와 session과 cookie에 대한 학습을 하게 되었습니다.<br />
 MySQL을 사용함으로써 DB의 작동 순서와 원리, 쿼리 등 많은 경험을 얻었고 앞으로의 개발 시 큰 원동력이 될 것이라 생각합니다.<br />
+![관리자회원기록](https://user-images.githubusercontent.com/65944245/101732263-4777bb80-3b00-11eb-898f-fe4707e93e88.png)
+![관리자주차기록](https://user-images.githubusercontent.com/65944245/101732267-49417f00-3b00-11eb-91db-1ef80a0339b2.png)
+![만기일표시](https://user-images.githubusercontent.com/65944245/101732269-49da1580-3b00-11eb-8c7d-44e48a9b6e4d.png)
+![관리자헤더](https://user-images.githubusercontent.com/65944245/101732270-4a72ac00-3b00-11eb-8687-5ea21f710602.png)
+<img width="553" alt="주차기록" src="https://user-images.githubusercontent.com/65944245/101731839-9709b780-3aff-11eb-800c-6b4f30c207fa.png">
+<img width="1113" alt="회원기록" src="https://user-images.githubusercontent.com/65944245/101731855-9b35d500-3aff-11eb-8088-87b173a01060.png">
