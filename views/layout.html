@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/main.css">
-    <link rel="stylesheet" media="(max-width: 850px)" href="/medium.css">
+    <link rel="stylesheet" href="/responsive.css">
 
     <script src="/js/toggle.js"></script>
 </head>
@@ -34,14 +34,14 @@
                 </ul>
             </div>
             <div class="btn-group toggle">
-            {% if member.admin %}
+                {% if member.admin %}
                 <div>
-                    <a href="/admin" class="btn btn--primary left">관리자 페이지</a>
+                    <a href="/admin" id="admin-btn" class="btn btn--primary left">관리자 페이지</a>
                 </div>
                 <div>
                     <a href="/auth/logout" class="btn">로그아웃</a>
                 </div>
-            {% elif member and member.id %}
+                {% elif member and member.id %}
                 {% if member.ticket %}
                 <div>
                     <div class="ticket-info">{{member.ticket.toLocaleString()}}</div>
@@ -50,15 +50,15 @@
                 <div>
                     <a href="/auth/logout" class="btn">로그아웃</a>
                 </div>
-            {% else %}
+                {% else %}
                 <div>
                     <a href="/auth/login" class="btn login">로그인</a>
-                    <a href="/auth/join" class="btn btn--primary join">회원가입</a>
+                    <a href="/auth/join" id="join-btn" class="btn btn--primary join">회원가입</a>
                 </div>
             </div>
             {% endif %}
-            <div id="toggle-btn">Header</div>
         </div>
+        <div id="toggle-btn">Header</div>
     </header>
 
     <!-- VISUAL -->

@@ -122,7 +122,7 @@ header .btn-group .ticket-info {
     width: 18px;
     height: 24px;
     position: absolute;
-    top: 16px;
+    top: 27px;
     right: 20px;
     cursor: pointer;
     text-indent: -9999px;
@@ -210,22 +210,22 @@ section .plan {
 }
 /* join.html */
 section .join {
-    padding: 180px;
+    padding: 180px 0;
 }
 /* login.html */
 section .login {
-    padding: 180px;
+    padding: 180px 0;
 }
 /* park.html, ticket.html */
 section .park {
-    padding: 200px;
+    padding: 200px 0;
 }
 #park-form p,
 #ticket-form p {
     text-align: center;
 }
 section .ticket {
-    padding: 180px;
+    padding: 180px 0;
 }
 #check-member {
     margin-top: 100px;
@@ -233,7 +233,8 @@ section .ticket {
 }
 /* plan.html */
 section .plan {
-    padding: 230px;
+    width: 360px;
+    padding: 230px 0;
 }
 section .plan .basic-table {
     width: 340px;
@@ -278,7 +279,7 @@ section .member-record {
 }
 /* pagination */
 .pages-wrapper {
-    width: 600px;
+    width: 360px;
     margin: 5px auto 0;
 }
 #pages {

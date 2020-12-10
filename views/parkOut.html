@@ -36,7 +36,8 @@
                 alert(`결제 요청 중...`);
                 setTimeout(() => {
                     axios.patch('/payment/out', { carNumber: carNumber });
-                    return alert(`${price}원이 정상적으로 결제되었습니다. \n감사합니다.`);
+                    alert(`${price}원이 정상적으로 결제되었습니다. \n감사합니다.`);
+                    return window.location.href = '/park/out';
                 }, 2000);
             } else {
                 alert('결제가 취소되었습니다.');
@@ -56,7 +57,8 @@
             if (Number(payment) && !isNaN(payment)) {
                 if (result >= 0) {
                     axios.patch('/payment/out', { carNumber: carNumber });
-                    return alert(`결제가 완료되었습니다.\n거스름돈은 ${result}원입니다.`);
+                    alert(`결제가 완료되었습니다.\n거스름돈은 ${result}원입니다.`);
+                    return window.location.href = '/park/out';
                 } else {
                     alert('금액이 부족합니다.');
                 }

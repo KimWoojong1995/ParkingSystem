@@ -1,0 +1,86 @@
+@media (max-width: 850px) {
+
+    header.section .inner {
+        max-width: none;
+        height: auto;
+        padding: 17px 20px;
+        display: block;
+    }
+    header .home a {
+        padding: 12px;
+    }
+    header .main-menu{
+        display: block;
+    }
+    header .menu-group {
+        justify-content: center;
+    }
+    header .main-menu ul {
+        width: 100%;
+    }
+    header .main-menu li a {
+        text-align: center;
+        padding: 12px;
+    }
+    header .btn-group div {
+        display: block;
+    }
+    header .btn-group .login,
+    header .btn-group .left {
+        margin-right: 5px;
+    }
+    header .btn-group .btn {
+        justify-content: center;
+        width: 50%;
+        margin: 0 auto;
+    }
+    #join-btn {
+        margin-top: 12px;
+    }
+    #admin-btn {
+        margin-bottom: 12px;
+    }
+    header .btn-group .ticket-info {
+        text-align: center;
+        font-size: 16px;
+        margin-right: 0;
+        padding: 8px 0 20px 0;
+    }
+    header .toggle {
+        display: none;
+    }
+    header .toggle.on {
+        display: block;
+    }
+    #toggle-btn {
+        display: block;
+    }
+
+    section .summary h2 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 640px) {
+
+    section .summary h2 {
+        font-size: 25px;
+    }
+    section .summary p {
+        font-size: 18px;
+    }
+    section #admin {
+        width: 340px;
+        padding-top: 80px;
+    }
+    #admin a {
+        width: 130px;
+    }
+    section .parking-record,
+    section .member-record {
+        width: 360px;
+        margin: 20px auto 0;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+}

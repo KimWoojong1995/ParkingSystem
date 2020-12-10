@@ -1,6 +1,6 @@
 window.onload = function () {
     'use strict';
-
+    
     const toggles = document.querySelectorAll('.toggle');
     const toggleBtn = document.getElementById('toggle-btn');
 
