@@ -5,7 +5,10 @@ const { ParkingRecord, Member } = require('../models');
 const router = express.Router();
 
 router.get('/', isLoggedIn, (req, res) => {
-    res.render('admin', { title: 'WJ파크-관리자' });
+    if (!req.user.admin) {
+        return res.render('error', { memberMessage: '관리자가 아닙니다.' })
+    }
+    return res.render('admin', { title: 'WJ파크-관리자' });
 });
 
 router.get('/park/record/:page', isLoggedIn, async (req, res) => {
