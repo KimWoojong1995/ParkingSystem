@@ -13,3 +13,11 @@
         res.render('error', { memberMessage: '이미 로그인한 상태입니다.' });
     }
  };
+
+ exports.isNotAdmin = (req, res, next) => {
+    if (!req.user.admin) {
+        return res.render('error', { memberMessage: '관리자가 아닙니다.' })
+    } else {
+        next();
+    }
+ };

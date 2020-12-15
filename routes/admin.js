@@ -1,17 +1,14 @@
 const express = require('express');
-const { isLoggedIn } = require('./middlewares');
+const { isLoggedIn, isNotAdmin } = require('./middlewares');
 const { ParkingRecord, Member } = require('../models');
 
 const router = express.Router();
 
-router.get('/', isLoggedIn, (req, res) => {
-    if (!req.user.admin) {
-        return res.render('error', { memberMessage: '관리자가 아닙니다.' })
-    }
+router.get('/', isLoggedIn, isNotAdmin, (req, res) => {
     return res.render('admin', { title: 'WJ파크-관리자' });
 });
 
-router.get('/park/record/:page', isLoggedIn, async (req, res) => {
+router.get('/park/record/:page', isLoggedIn, isNotAdmin, async (req, res) => {
     const pageNum = req.params.page;
     try {
         let offset = 0;
@@ -46,7 +43,7 @@ router.post('/park/record/delete', isLoggedIn, async (req, res) => {
     }
 });
 
-router.get('/member/record/:page', isLoggedIn, async (req, res) => {
+router.get('/member/record/:page', isLoggedIn, isNotAdmin, async (req, res) => {
     const pageNum = req.params.page;
     try {
         let offset = 0;
